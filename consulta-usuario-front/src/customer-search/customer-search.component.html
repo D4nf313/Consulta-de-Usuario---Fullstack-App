@@ -1,0 +1,207 @@
+
+
+<div class="container">
+  <!-- SECCIÓN DE BÚSQUEDA -->
+  <div class="search-section">
+    <h1 class="title">
+      <i class="pi pi-search"></i>
+      Consulta de Clientes
+    </h1>
+
+    <p-card styleClass="search-card">
+      <div class="search-form">
+        <!-- Selector de tipo de documento e input en la misma línea -->
+        <div class="search-input-group">
+          <p-dropdown
+            [options]="documentTypes"
+            [(ngModel)]="selectedDocumentType"
+            optionLabel="name"
+            placeholder="Tipo de documento"
+            [style]="{ 'min-width': '220px' }"
+            styleClass="document-type-dropdown"
+            [disabled]="loading()"
+            appendTo="body"
+          >
+            <ng-template pTemplate="selectedItem">
+              <div *ngIf="selectedDocumentType" class="selected-document-item">
+                <span class="document-abbr">{{
+                  selectedDocumentType.abbreviation
+                }}</span>
+                <span class="document-name">{{
+                  selectedDocumentType.name
+                }}</span>
+              </div>
+              <span *ngIf="!selectedDocumentType" class="document-placeholder">
+                Seleccione tipo
+              </span>
+            </ng-template>
+            <ng-template let-type pTemplate="item">
+              <div class="dropdown-item">
+                <span class="document-abbr">{{ type.abbreviation }}</span>
+                <span class="document-name">{{ type.name }}</span>
+              </div>
+            </ng-template>
+          </p-dropdown>
+
+          <span class="p-input-icon-left search-input-wrapper">
+            <i class="pi pi-id-card"></i>
+            <input
+              pInputText
+              type="text"
+              [(ngModel)]="customerId"
+              [placeholder]="getInputPlaceholder()"
+              (keyup.enter)="searchCustomer()"
+              [disabled]="loading()"
+              class="search-input"
+            />
+          </span>
+
+          <!-- Botón de búsqueda -->
+          <p-button
+            label="Buscar"
+            icon="pi pi-search"
+            (onClick)="searchCustomer()"
+            [loading]="loading()"
+            [disabled]="!canSearch"
+            styleClass="search-button"
+          ></p-button>
+        </div>
+      </div>
+    </p-card>
+  </div>
+
+  <!-- ESTADO DE CARGA (Skeleton) -->
+  @if (loading()) {
+    <div class="result-section">
+      <p-card styleClass="customer-card skeleton-card">
+        <div class="customer-header">
+          <p-skeleton shape="circle" size="5rem"></p-skeleton>
+          <div class="customer-header-info">
+            <p-skeleton width="200px" height="2rem"></p-skeleton>
+            <p-skeleton width="150px" height="1.5rem"></p-skeleton>
+          </div>
+        </div>
+        <p-divider></p-divider>
+        <div class="customer-details">
+          @for (item of skeletonItems; track item) {
+            <div class="detail-row">
+              <p-skeleton width="100px" height="1rem"></p-skeleton>
+              <p-skeleton width="200px" height="1rem"></p-skeleton>
+            </div>
+          }
+        </div>
+      </p-card>
+    </div>
+  }
+
+  <!-- ESTADO DE ERROR -->
+  @if (error() && !loading()) {
+    <div class="result-section">
+      <div class="error-card">
+        <div class="error-content">
+          <i class="pi pi-exclamation-triangle error-icon"></i>
+          <div class="error-text-container">
+            <div class="error-title">Error en la búsqueda</div>
+            <div class="error-text">{{ error() }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- ESTADO DE ÉXITO (Tarjeta de Cliente) -->
+  @if (customer() && !loading()) {
+    <div class="result-section">
+      <p-card styleClass="customer-card">
+        <div class="customer-header">
+          <p-avatar
+            [label]="getInitials(customer()!)"
+            styleClass="customer-avatar"
+            size="xlarge"
+            shape="circle"
+          ></p-avatar>
+          <div class="customer-header-info">
+            <h2 class="customer-name">
+              {{ customer()!.firstName }} {{ customer()!.lastName }}
+            </h2>
+            <div class="customer-id-container">
+              <p class="customer-id">
+                <i class="pi pi-tag"></i>
+                Código: {{ customer()!.customerId }}
+              </p>
+              <p class="customer-doc-number">
+                <i class="pi pi-id-card"></i>
+                {{ customer()!.identityDocument }}:
+                {{ customer()!.identityDocumentNumber }}
+              </p>
+            </div>
+          </div>
+          <p-tag
+            value="ACTIVO"
+            severity="success"
+            styleClass="customer-status"
+          ></p-tag>
+        </div>
+
+        <p-divider></p-divider>
+
+        <div class="customer-details">
+          <!-- Información Personal -->
+          <div class="detail-section">
+            <h3 class="section-title">
+              <i class="pi pi-user"></i>
+              Información Personal
+            </h3>
+
+            <div class="detail-row">
+              <span class="detail-label">
+                <i class="pi pi-id-card"></i>
+                Tipo Documento
+              </span>
+              <span class="detail-value">
+                {{ getDocumentTypeName(customer()!.identityDocumentTypeId) }}
+                ({{ customer()!.identityDocument }})
+              </span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">
+                <i class="pi pi-id-card"></i>
+                Número Documento
+              </span>
+              <span class="detail-value">{{
+                customer()!.identityDocumentNumber
+              }}</span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">
+                <i class="pi pi-flag"></i>
+                Nacionalidad
+              </span>
+              <span class="detail-value">
+                {{ customer()!.nationalityName }}
+                <span class="country-code"
+                  >({{ customer()!.nationalityId }})</span
+                >
+              </span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">
+                <i class="pi pi-user"></i>
+                Género
+              </span>
+              <span class="detail-value">
+                {{ customer()!.genderName }}
+                <span class="gender-code"
+                  >({{ customer()!.genderId === "1" ? "M" : "F" }})</span
+                >
+              </span>
+            </div>
+          </div>
+        </div>
+      </p-card>
+    </div>
+  }
+</div>

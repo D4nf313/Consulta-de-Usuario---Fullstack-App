@@ -1,0 +1,115 @@
+/* You can add global styles to this file, and also import other style files */
+/* Estilos globales de la aplicación */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+               'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Ajustes para PrimeNG */
+.p-component {
+  font-family: inherit;
+}
+
+/* Animaciones globales */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Estilos globales para dropdowns de PrimeNG */
+.p-dropdown-panel {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  margin-top: 4px !important;
+}
+
+.p-dropdown-panel .p-dropdown-items-wrapper {
+  background: white !important;
+  border-radius: 16px !important;
+}
+
+.p-dropdown-panel .p-dropdown-items {
+  background: white !important;
+  padding: 0.5rem !important;
+}
+
+.p-dropdown-panel .p-dropdown-item {
+  background: white !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 12px !important;
+  margin: 2px 4px !important;
+  transition: all 0.2s ease;
+}
+
+.p-dropdown-panel .p-dropdown-item:hover {
+  background: #f3f4f6 !important;
+}
+
+.p-dropdown-panel .p-dropdown-item.p-highlight {
+  background: linear-gradient(135deg, #3b82f6, #6366f1) !important;
+  color: white !important;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.document-abbr {
+  font-weight: 600;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.p-dropdown-item.p-highlight .document-abbr {
+  background: white !important;
+  color: #3b82f6 !important;
+}

@@ -1,0 +1,70 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.logo .aniversario {
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #003399;
+}
+
+.nav-links a {
+  margin: 0 0.75rem;
+  text-decoration: none;
+  color: #003399;
+  font-weight: 500;
+}
+
+.nav-links a.active {
+  border-bottom: 2px solid #003399;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.actions .btn {
+  margin-left: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #003399;
+  font-weight: 500;
+}
+
+.actions .btn-outline {
+  border: 1px solid #003399;
+}
+
+.actions .btn-acceso {
+  background-color: #003399;
+  color: #fff;
+}
+
+.actions .icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  color: #003399;
+}

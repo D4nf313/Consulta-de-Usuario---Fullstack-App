@@ -1,0 +1,102 @@
+# ==========================================
+# REGLAS GLOBALES (Funcionan para cualquier nombre de carpeta)
+# ==========================================
+# Ignorar dependencias de Node y caché de Angular
+**/node_modules/
+**/.angular/
+
+# Ignorar carpetas de compilación (Java y Angular)
+**/target/
+**/build/
+**/out/
+**/dist/
+**/out-tsc/
+**/bin/
+
+# Ignorar archivos temporales y logs
+*.log
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# FRONTEND (Angular)
+# ==========================================
+# Ignorar dependencias y caché
+**/frontend/node_modules/
+**/frontend/.angular/cache/
+
+# Ignorar carpetas de compilación
+**/frontend/dist/
+**/frontend/out-tsc/
+**/frontend/bazel-out/
+
+# Tests y cobertura
+**/frontend/coverage/
+**/frontend/testem.log
+
+# Ignorar compilados del Backend
+**/consulta-usuario-back/target/
+**/consulta-usuario-back/bin/
+
+# Ignorar dependencias del Frontend
+**/consulta-usuario-front/node_modules/
+**/consulta-usuario-front/.angular/
+**/consulta-usuario-front/dist/
+
+# Archivos de configuración de IDEs
+.idea/
+.vscode/
+*.iml
+
+# ==========================================
+# BACKEND (Spring Boot / Maven / Gradle)
+# ==========================================
+# Ignorar compilados de Java
+**/backend/target/
+**/backend/build/
+**/backend/out/
+
+# Maven wrapper y archivos generados
+**/backend/.mvn/wrapper/maven-wrapper.jar
+**/backend/.apt_generated/
+**/backend/.factorypath/
+**/backend/.springBeans/
+**/backend/.sts4-cache/
+
+# Excepciones para no ignorar código fuente si está en carpetas especiales
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# ==========================================
+# IDEs & EDITORS (Compartido)
+# ==========================================
+# JetBrains (IntelliJ, WebStorm)
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.qodo
+
+# Otros
+.project
+.classpath
+.settings/
+/nbproject/private/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+*.sublime-workspace
+
+# ==========================================
+# SECRETOS (¡IMPORTANTE!)
+# ==========================================
+.env
+.env.local
+**/src/main/resources/application-local.properties
