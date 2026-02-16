@@ -53,24 +53,15 @@ npm install
 npm start
 URL de la App: http://localhost:4200
 
-📦 Librerías Principales Utilizadas
-Backend:
-Spring Data JPA: Para persistencia de datos.
+## 🧠 Decisiones Técnicas y Arquitectura
 
-MapStruct (1.5.5.Final): Para el mapeo eficiente de DTOs a Entidades.
+### 🏗️ Backend (Spring Boot 3.4.2)
+* **Arquitectura en Capas:** Organización dividida en `Controller`, `Service`, `Repository` y `Entity` para asegurar la separación de responsabilidades.
+* **Uso de Lombok:** Implementado para reducir el código repetitivo, mejorando la legibilidad de las entidades y DTOs.
+* **MapStruct:** Utilizado para el mapeo automático entre Entidades y DTOs, garantizando una transferencia de datos segura y eficiente.
+* **Manejo Global de Excepciones:** Se diseñó un `GlobalExceptionHandler` con `@ControllerAdvice` que estandariza las respuestas de error. Esto permite que el Frontend reciba mensajes claros y estructurados ante cualquier fallo de validación o negocio (ej. Usuario no encontrado).
 
-Lombok: Para reducir el código boilerplate (Getters, Setters).
-
-Validation: Para validaciones de formularios desde el servidor.
-
-Frontend:
-PrimeNG & PrimeIcons: Para una interfaz de usuario moderna y profesional.
-
-RxJS: Para el manejo de flujos de datos asíncronos.
-
-📝 Notas Adicionales
-Lombok + MapStruct: El proyecto está configurado para que ambos funcionen juntos mediante el lombok-mapstruct-binding en el pom.xml. Si tienes errores de compilación, realiza un mvn clean install.
-
-Variables de Entorno: Si necesitas cambiar el puerto o la conexión, revisa el archivo backend/src/main/resources/application.properties.
-
-⭐ ¡No olvides darle una estrella a este repo si te resultó útil!
+### 🎨 Frontend (Angular 17)
+* **PrimeNG:** Se seleccionó esta librería de componentes por su robustez y rapidez para crear interfaces profesionales y reactivas.
+* **Consumo de API REST:** Uso de servicios desacoplados y centralizados para la comunicación con el backend mediante `HttpClient`.
+* **Validaciones Dinámicas:** El frontend reacciona a las excepciones controladas del backend para mostrar alertas precisas al usuario, mejorando la experiencia de uso (UX).
