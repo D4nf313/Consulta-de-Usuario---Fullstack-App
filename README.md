@@ -29,7 +29,7 @@ consulta-usuario-root/
 Sigue estos pasos para levantar el proyecto localmente:
 1. Clonar el repositorio
 Bash
-git clone https://github.com/tu-usuario/tu-repositorio.git
+git clone https://github.com/D4nf313/Consulta-de-Usuario---Fullstack-App
 cd tu-repositorio
 2. Levantar el Backend (Spring Boot)
 El backend utiliza una base de datos H2 en memoria, por lo que no necesitas instalar bases de datos externas.
